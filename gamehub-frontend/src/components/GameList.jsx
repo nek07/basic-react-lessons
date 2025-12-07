@@ -1,30 +1,32 @@
-import React from 'react';
-import GameCard from './GameCard';
-import gameImage from '../assets/game.avif'; // пример картинки
+import React, { useState } from "react";
+import GameCard from "./GameCard";
 
-function GameList() {
-  const games = [
-    { title: 'Игра 1', image: gameImage, price: 29.99 },
-    { title: 'Игра 2', image: gameImage, price: 49.99 },
-    { title: 'Игра 3', image: gameImage, price: 19.99 },
-  ];
+function GameList({ addToCart }) {
+  const [games, setGames] = useState([
+    { id: 1, title: "Cyberpunk 2077", price: 19990, image: "/img/cp.jpg" },
+    { id: 2, title: "Elden Ring", price: 25990, image: "/img/er.jpg" },
+    { id: 3, title: "The Witcher 3", price: 9990, image: "/img/w3.jpg" },
+        { id: 2, title: "Elden Ring", price: 25990, image: "/img/er.jpg" },
+    { id: 3, title: "The Witcher 3", price: 9990, image: "/img/w3.jpg" },
+        { id: 2, title: "Elden Ring", price: 25990, image: "/img/er.jpg" },
+    { id: 3, title: "The Witcher 3", price: 9990, image: "/img/w3.jpg" },
+  ]);
 
-  const handleBuy = (title) => {
-    alert(`Вы купили ${title}!`);
+  const deleteGame = (id) => {
+    setGames((prev) => prev.filter((g) => g.id !== id));
   };
 
   return (
-    <section className="game-list" id="games">
-      {games.map((g) => (
+    <div className="game-list">
+      {games.map((game) => (
         <GameCard
-          key={g.title}
-          title={g.title}
-          image={g.image}
-          price={g.price}
-          onBuy={() => handleBuy(g.title)}
+          key={game.id}
+          game={game}
+          onDelete={() => deleteGame(game.id)}
+          onAddToCart={() => addToCart(game)}
         />
       ))}
-    </section>
+    </div>
   );
 }
 

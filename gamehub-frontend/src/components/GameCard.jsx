@@ -1,12 +1,22 @@
-import React from 'react';
+import React from "react";
 
-function GameCard({ title, image, price, onBuy }) {
+function GameCard({ game, onDelete, onAddToCart }) {
   return (
     <div className="game-card">
-      <img src={image} alt={title} className="game-image" />
-      <h3>{title}</h3>
-      <p>Цена: ${price}</p>
-      <button onClick={onBuy}>Купить</button>
+      <img src={game.image} alt={game.title} />
+
+      <h3>{game.title}</h3>
+      <p>{game.price} ₸</p>
+
+      <div className="buttons">
+        <button className="delete-btn" onClick={onDelete}>
+          Удалить
+        </button>
+
+        <button className="cart-btn" onClick={onAddToCart}>
+          В корзину
+        </button>
+      </div>
     </div>
   );
 }

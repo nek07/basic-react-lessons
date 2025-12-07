@@ -1,17 +1,30 @@
-import React from 'react';
-import Header from './components/Header';
-import GameList from './components/GameList';
-import Footer from './components/Footer';
-import FriendsManager from './components/FriendsManager';
-import './styles.css';
+import React, { useState } from "react";
+import GameList from "./components/GameList";
+import Cart from "./components/Cart";
+import "./styles.css";
 
 function App() {
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (game) => {
+    setCart((prev) => {
+      // проверяем дубли
+      if (prev.find((g) => g.id === game.id)) return prev;
+      return [...prev, game];
+    });
+  };
+
+  const removeFromCart = (id) => {
+    setCart((prev) => prev.filter((g) => g.id !== id));
+  };
+
   return (
     <div className="app">
-      <Header />
-      <GameList />
-      <FriendsManager />  {/* Список друзей теперь отдельным компонентом */}
-      <Footer />
+      <h1>Магазин игр</h1>
+
+      <GameList addToCart={addToCart} />
+
+      <Cart cart={cart} removeFromCart={removeFromCart} />
     </div>
   );
 }

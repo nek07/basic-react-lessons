@@ -1,194 +1,130 @@
-/* Сброс стилей */
+/* Сброс */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html, body {
-  height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(120deg, #f0f4f8, #d9e2ec);
-  color: #333;
+  background: #f5f6fa;
+  font-family: "Inter", sans-serif;
+  color: #222;
 }
 
 /* Контейнер приложения */
 .app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* растягиваем на весь экран */
-}
-
-/* Header */
-.header {
-  background-color: #1e1e2f;
-  color: #fff;
-  padding: 1.5rem 2rem;
-  text-align: center;
-}
-
-.header nav a {
-  color: #fff;
-  margin: 0 1rem;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.header nav a:hover {
-  color: #ff6b6b;
-}
-
-/* GameList */
-.game-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  flex-grow: 1; /* занимает оставшееся пространство */
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 2rem;
-  align-items: flex-start; /* карточки сверху */
 }
 
-/* GameCard */
+/* Заголовки */
+h1, h2 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1e1e2f;
+}
+
+/* --- Game List --- */
+.game-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* --- Game Card --- */
 .game-card {
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  width: 220px;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.5rem;
 }
 
 .game-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
 .game-card img {
-  width: 180px;
+  width: 100%;
   height: 180px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 12px;
   margin-bottom: 1rem;
 }
 
 .game-card h3 {
   font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: #1e1e2f;
+  margin-bottom: 0.3rem;
 }
 
 .game-card p {
-  font-size: 1rem;
+  font-weight: 600;
   margin-bottom: 1rem;
-  font-weight: 500;
-}
-
-.game-card button {
-  background-color: #ff6b6b;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1.2rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.3s;
-}
-
-.game-card button:hover {
-  background-color: #ff4b4b;
-}
-
-/* Footer */
-.footer {
-  background-color: #1e1e2f;
-  color: #fff;
-  padding: 1.5rem 2rem;
-  text-align: center;
-  margin-top: auto; /* всегда внизу */
-}
-
-
-
-/* Заголовки */
-h1, h2 {
-  text-align: center;
-  margin-bottom: 25px;
-}
-
-/* Список друзей */
-.friend-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-}
-
-.friend-card {
-  width: 350px;
-  background: #ffffff;
-  padding: 18px 20px;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: transform .15s ease;
-}
-
-.friend-card:hover {
-  transform: translateY(-3px);
-}
-
-.friend-name {
-  font-size: 20px;
-  font-weight: 600;
+  color: #2d6a4f;
 }
 
 /* Кнопки */
-.btn {
-  padding: 8px 14px;
-  border: none;
-  cursor: pointer;
-  border-radius: 8px;
-  font-size: 14px;
-  transition: opacity .15s ease;
+.game-card .buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
 }
 
-.btn-add {
+button {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.delete-btn {
+  background: #ff4b4b;
+  color: white;
+}
+.delete-btn:hover {
+  background: #d93838;
+}
+
+.cart-btn {
   background: #4caf50;
   color: white;
 }
-
-.btn-delete {
-  background: #e53935;
-  color: white;
+.cart-btn:hover {
+  background: #3e8e41;
 }
 
-.btn:hover {
-  opacity: 0.8;
+/* --- Cart --- */
+.cart {
+  margin-top: 3rem;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
 }
 
-/* Выбранные друзья */
-.selected-list {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
+.cart ul {
+  list-style: none;
+  margin-top: 1rem;
+  padding: 0;
 }
 
-.selected-item {
-  font-size: 22px;
-  background: #f3f3f3;
-  padding: 12px 18px;
+.cart li {
+  background: #f8f9fc;
+  padding: 0.8rem 1rem;
   border-radius: 10px;
-  width: 350px;
-  text-align: center;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+  margin-bottom: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
